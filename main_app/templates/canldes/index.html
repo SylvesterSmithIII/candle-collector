@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>Candle List</h1>
+
+{% for candle in candles %}
+  <div class="card">
+    <div class="card-content">
+      <span class="card-title">{{ candle.name }}</span>
+      <p>Scent: {{ candle.scent }}</p>
+      <p>Description: {{ candle.description }}</p>
+
+        <p>Burn Time: {{ cat.burn_time }} mins</p>
+
+    </div>
+  </div>
+{% endfor %}
+
+{% endblock %}
