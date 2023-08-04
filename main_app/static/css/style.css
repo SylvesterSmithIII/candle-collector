@@ -13,3 +13,16 @@ body {
     text-align: right;
   }
   
+.navbar-fixed {
+  background-color: aqua !important;
+}
+
+.nav-wrapper {
+  background-color: aqua !important;
+
+}
+
+.page-footer {
+  background-color: aqua !important;
+
+}
