@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block content %}
+
+{% if object %}
+<h1>Edit <span class="teal-text">{{ object.name }}</span></h1>
+{% else %}
+<h1>Add Candle</h1>
+{% endif %}
+
+
+
+{% comment %} Leaving the action blank will post form to same address {% endcomment %}
+<form  action="" method="POST">
+{% comment %} Django requires the following for security for forms {% endcomment %}
+{% csrf_token %}
+<table>
+    {{ form.as_table }}
+</table>
+<input type="submit" value="Submit!" class="btn">
+</form>
+
+{% endblock %}

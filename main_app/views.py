@@ -1,13 +1,6 @@
 from django.shortcuts import render
-
-candles = [
-    {'name': 'Tranquil Lavender', 'scent': 'Lavender', 'description': 'Relaxing lavender-scented candle', 'burn_time': 20},
-    {'name': 'Warm Vanilla', 'scent': 'Vanilla', 'description': 'Cozy vanilla-scented candle', 'burn_time': 15},
-    {'name': 'Spiced Apple', 'scent': 'Apple and spices', 'description': 'Invigorating spiced apple-scented candle', 'burn_time': 18},
-    {'name': 'Fresh Linen', 'scent': 'Clean and crisp', 'description': 'Fresh linen-scented candle for a clean ambiance', 'burn_time': 12},
-    {'name': 'Forest Pine', 'scent': 'Pine and earth', 'description': 'Bring the outdoors in with this forest pine-scented candle', 'burn_time': 22},
-    {'name': 'Citrus Burst', 'scent': 'Citrus fruits', 'description': 'Energizing citrus burst-scented candle for a lively atmosphere', 'burn_time': 17},
-]
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from .models import Candle
 
 
 # Create your views here.
@@ -19,6 +12,25 @@ def about(request):
     return render(request, 'about.html')
 
 def candles_index(request):
+    candles = Candle.objects.all()
     return render(request, 'candles/index.html', {
         'candles': candles
     })
+
+def candle_detial(request, candle_id):
+    candle = Candle.objects.get(id=candle_id)
+    return render(request, 'candles/detail.html', {
+        'candle': candle
+    })
+
+class CandleCreate(CreateView):
+    model = Candle
+    fields = '__all__'
+
+class CandleUpdate(UpdateView):
+    model = Candle
+    fields = ['scent', 'description', 'burn_time']
+
+class CandleDelete(DeleteView):
+    model = Candle
+    success_url = '/candles'
