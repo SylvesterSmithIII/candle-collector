@@ -14,3 +14,13 @@ class Candle(models.Model):
     
     def get_absolute_url(self):
         return reverse('detail', kwargs={'candle_id': self.id})
+    
+
+class Store(models.Model):
+    name = models.CharField(max_length=100)
+    carries = models.BooleanField(default=True)
+
+    candle = models.ForeignKey(Candle, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f"{self.name}? {self.carries}"

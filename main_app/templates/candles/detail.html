@@ -18,5 +18,32 @@
     </div>
 </div>
 
+  <!-- New Markup Below -->
+  <div class="col s6">
+    <form method="POST" action="{% url 'add_store' candle.id %}">
+        {% csrf_token %}
+        <!-- Render the inputs -->
+        {{ store_form.as_p }}
+        <input type="submit" class="btn" value="Add Store">
+      </form>
+    <table class="striped">
+      <thead>
+        <tr><th>Store Name</th><th>Carries?</th></tr>
+      </thead>
+      <tbody>
+        {% for store in candle.store_set.all %}
+          <tr>
+            <td>{{store.name}}</td>
+            {% if store.carries %}
+                <td>&#9745;</td>
+            {% else %}
+            <td>&#9744;</td>
+            {% endif %}
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  <!-- New Markup Above -->
 
 {% endblock %}
