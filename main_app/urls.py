@@ -17,4 +17,5 @@ urlpatterns = [
     path('waxs/<int:pk>/delete/', views.WaxDelete.as_view(), name="waxs_delete"),
     path('candles/<int:candle_id>/assoc_wax/<int:wax_id>/', views.assoc_wax, name='assoc_wax'),
     path('candles/<int:candle_id>/remove/<int:wax_id>/', views.remove_wax, name='remove_wax'),
+    path('accounts/signup/', views.signup, name='signup'),
 ]
